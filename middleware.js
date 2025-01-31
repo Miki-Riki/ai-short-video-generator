@@ -1,4 +1,4 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+/* import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 const isProtectedRoute = createRouteMatcher(['/dashboard(.*)'])
 
@@ -13,4 +13,20 @@ export const config = {
     // Always run for API routes
     '/(api|trpc)(.*)',
   ],
+}; */
+
+import { NextResponse } from "next/server";
+
+export function middleware(req) {
+  const res = NextResponse.next();
+
+  // Disable caching for authentication-related pages
+  res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+
+  return res;
+}
+
+// Apply middleware to these routes
+export const config = {
+  matcher: ["/sign-in", "/dashboard"],
 };
