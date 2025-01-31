@@ -36,9 +36,9 @@ export default function Home() {
   const { isSignedIn } = useUser();
 
   useEffect(() => {
-    // If user is signed out, replace the current URL with the same one to force a page reload
+    // If the user is signed out, force a page reload and redirect to sign-in
     if (!isSignedIn) {
-      router.replace(window.location.href);
+      window.location.href = "/sign-in";  // This will reload the page and redirect to sign-in
     } else {
       router.push("/dashboard");
     }
@@ -50,5 +50,3 @@ export default function Home() {
     </div>
   );
 }
-
-
