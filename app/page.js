@@ -21,7 +21,9 @@ export default function Home() {
       <UserButton
         afterSignOutUrl="/sign-in"
         onSignOut={() => {
-          window.location.reload();
+          setTimeout(() => {
+            window.location.href = "/sign-in";
+          }, 100);
         }}
       />
     </div>
