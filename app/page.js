@@ -27,29 +27,22 @@ export default function Home() {
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { UserButton, useUser } from "@clerk/nextjs";
 
 export default function Home() {
   const router = useRouter();
-  const { isSignedIn, isLoading } = useUser();
-  const [redirecting, setRedirecting] = useState(true);
+  const { isSignedIn } = useUser();
 
   useEffect(() => {
-    if (!isLoading) {
-      setRedirecting(false);
-      if (isSignedIn) {
-        router.push("/dashboard");
-      } else {
-        router.push("/sign-in");
-      }
+    // When the user is signed out, reload the page
+    if (!isSignedIn) {
+      window.location.reload();
+    } else {
+      router.push("/dashboard");
     }
-  }, [isSignedIn, isLoading, router]);
-
-  if (redirecting || isLoading) {
-    return <div>Loading...</div>;
-  }
+  }, [isSignedIn, router]);
 
   return (
     <div>
@@ -57,3 +50,4 @@ export default function Home() {
     </div>
   );
 }
+
