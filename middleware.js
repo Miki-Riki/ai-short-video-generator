@@ -16,17 +16,27 @@ export const config = {
 }; */
 
 import { NextResponse } from "next/server";
+import { getAuth } from "@clerk/nextjs/server";
 
 export function middleware(req) {
-  const res = NextResponse.next();
+  const { userId } = getAuth(req); // Get user session from Clerk
+  const url = req.nextUrl;
 
-  // Disable caching for authentication-related pages
-  res.headers.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+  // If user is signed in, prevent access to `/sign-in` and redirect to `/dashboard`
+  if (userId && url.pathname === "/sign-in") {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  }
 
-  return res;
+  // If user is not signed in, prevent access to `/dashboard` and redirect to `/sign-in`
+  if (!userId && url.pathname === "/dashboard") {
+    return NextResponse.redirect(new URL("/sign-in", req.url));
+  }
+
+  return NextResponse.next(); // Allow the request to proceed
 }
 
-// Apply middleware to these routes
+// Apply middleware to relevant pages
 export const config = {
-  matcher: ["/sign-in", "/dashboard"],
+  matcher: ["/sign-in", "/dashboard"], // Apply only to these routes
 };
+
