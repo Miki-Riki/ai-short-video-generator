@@ -42,7 +42,7 @@ function SelectStyle({ onUserSelect }) {
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-5 mt-3">
                 {styleOptions.map((item, index) => (
                     <div
-                        key={index} // Add the key prop for each item
+                        key={index}
                         className={`relative hover:scale-105 transition-transform duration-300 ease-in-out cursor-pointer rounded-xl ${selectedOption === item.name ? 'border-4 border-primary' : ''}`}
                     >
                         {/* Image */}
