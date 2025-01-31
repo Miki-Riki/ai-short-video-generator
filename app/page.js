@@ -28,24 +28,27 @@ export default function Home() {
 
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { UserButton, useUser } from "@clerk/nextjs";
 
 export default function Home() {
   const router = useRouter();
   const { isSignedIn, isLoading } = useUser();
+  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    // Ensure we're not redirecting before the user's status is loaded
+    // Check if the user session has changed and we're not loading
     if (!isLoading) {
-      if (isSignedIn) {
+      if (initialLoad) {
+        setInitialLoad(false); // Mark initial load as complete
+      } else if (isSignedIn) {
         router.push("/dashboard");
       } else {
         router.push("/sign-in");
       }
     }
-  }, [isSignedIn, isLoading, router]);
+  }, [isSignedIn, isLoading, router, initialLoad]);
 
   return (
     <div>
@@ -53,3 +56,4 @@ export default function Home() {
     </div>
   );
 }
+
