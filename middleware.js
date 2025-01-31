@@ -18,26 +18,36 @@ export const config = {
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
+// Define the protected routes
 const isProtectedRoute = createRouteMatcher(['/dashboard(.*)']);
 
 export default clerkMiddleware(async (auth, req) => {
-  const { userId } = auth;
-  const url = req.nextUrl;
+  try {
+    const { userId } = auth;
+    const url = req.nextUrl;
 
-  // Protect dashboard routes
-  if (isProtectedRoute(req)) await auth.protect();
+    console.log("Middleware Invoked: ", { userId, url: url.pathname });
 
-  // If the user is signed in, prevent access to `/sign-in` and redirect to `/dashboard`
-  if (userId && url.pathname === "/sign-in") {
-    return NextResponse.redirect(new URL("/dashboard", req.url));
+    // Protect dashboard routes
+    if (isProtectedRoute(req)) await auth.protect();
+
+    // If user is signed in, prevent access to `/sign-in` and redirect to `/dashboard`
+    if (userId && url.pathname === "/sign-in") {
+      console.log("Redirecting signed-in user from /sign-in to /dashboard");
+      return NextResponse.redirect(new URL("/dashboard", req.url));
+    }
+
+    // If user is not signed in, prevent access to `/dashboard` and redirect to `/sign-in`
+    if (!userId && url.pathname.startsWith("/dashboard")) {
+      console.log("Redirecting unauthenticated user from /dashboard to /sign-in");
+      return NextResponse.redirect(new URL("/sign-in", req.url));
+    }
+
+    return NextResponse.next();
+  } catch (error) {
+    console.error("Middleware error: ", error);
+    return NextResponse.error();
   }
-
-  // If the user is not signed in, prevent access to `/dashboard` and redirect to `/sign-in`
-  if (!userId && url.pathname.startsWith("/dashboard")) {
-    return NextResponse.redirect(new URL("/sign-in", req.url));
-  }
-
-  return NextResponse.next();
 });
 
 export const config = {
