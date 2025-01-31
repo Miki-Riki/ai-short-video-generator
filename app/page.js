@@ -18,7 +18,12 @@ export default function Home() {
 
   return (
     <div>
-      <UserButton />
+      <UserButton
+        afterSignOutUrl="/sign-in"
+        onSignOut={() => {
+          window.location.reload();
+        }}
+      />
     </div>
   );
 }
