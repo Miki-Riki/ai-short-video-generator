@@ -20,7 +20,7 @@ function CustomLoading({loading}) {
             <AlertDialogContent>
                 <div className='flex flex-col items-center my-10 justify-center'>
                     <Image src={'/loading.gif'} alt='loading' width={100} height={100}></Image>
-                    <h2>Loading...</h2>
+                    <h2>Generating video please wait...</h2>
                 </div>
             </AlertDialogContent>
         </AlertDialog>
