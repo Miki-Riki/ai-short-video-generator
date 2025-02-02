@@ -8,7 +8,7 @@ function VideoList({ videoList }) {
     const [videoId, setVideoId] = useState();
 
     return (
-        <div className="relative mt-10 h-[80vh] overflow-y-auto scrollbar-hide px-4">
+        <div className="relative mt-10 h-[80vh] overflow-y-auto scrollbar-hide px-4 pt-3">
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 2xl:grid-cols-6'>
                 {videoList?.map((video, index) => (
                     <div
