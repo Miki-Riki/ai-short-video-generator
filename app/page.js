@@ -23,7 +23,7 @@ export default function Home() {
   );
 } */
 
-  "use client";
+"use client";
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
@@ -38,13 +38,13 @@ export default function Home() {
       router.push("/dashboard");
     } else {
       router.push("/sign-in");
-      router.refresh(); // Forces a refresh on logout
     }
   }, [isSignedIn, router]);
 
   return (
     <div>
-      <UserButton afterSignOutUrl="/" />
+      {/* Redirect to sign-in after logout */}
+      <UserButton afterSignOutUrl="/sign-in" />
     </div>
   );
 }
