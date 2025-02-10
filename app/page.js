@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <div>
-      <UserButton />
+      <img src="/loading.gif" alt="Loading..." className="h-16 animate-pulse" />
     </div>
   );
 }
