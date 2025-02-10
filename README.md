@@ -1,7 +1,3 @@
-Certainly! Here's a **README.md** template for your project, **AI Short Video Generator**. It includes environment variables, usage instructions, and other relevant details based on the information you've provided.
-
----
-
 # AI Short Video Generator
 
 A platform designed to generate AI-powered short videos with subtitles and audio. This project utilizes various APIs for video generation, captioning, and integration with AI technologies like **Gemini**, **Clerk**, and **Appwrite**.
