@@ -75,7 +75,7 @@ EXAMPLE_TOGETHER_AI_IMAGE_API_KEY=your_api_key
 - **Next.js**: React framework for server-side rendering and API routes.
 - **Clerk**: For authentication and user management.
 - **Gemini API**: AI-powered content generation for prompt creation.
-- **Google API**: AI-powered content for generating voice
+- **Google API**: AI-powered speech-to-text for voice processing.
 - **AssemblyAI**: For generating captions for videos.
 - **Appwrite**: File storage and backend services.
 - **Together AI**: Image generation for video content.
