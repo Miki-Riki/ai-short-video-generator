@@ -1,12 +1,22 @@
-"use client"
-import React, { useState } from 'react'
-import Header from './_components/Header'
-import SideNav from './_components/SideNav'
-import { VideoDataContext } from '../_context/VideoDataContext'
+"use client";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
+import Header from "./_components/Header";
+import SideNav from "./_components/SideNav";
+import { VideoDataContext } from "../_context/VideoDataContext";
 
 function DashboardLayout({ children }) {
     const [videoData, setVideoData] = useState([]);
     const [isSideNavVisible, setIsSideNavVisible] = useState(false);
+    const router = useRouter();
+    const { isSignedIn } = useUser();
+
+    useEffect(() => {
+        if (isSignedIn === false) {
+            router.push("/sign-in");
+        }
+    }, [isSignedIn, router]);
 
     const toggleSideNav = () => {
         setIsSideNavVisible(!isSideNavVisible);
@@ -15,7 +25,7 @@ function DashboardLayout({ children }) {
     return (
         <VideoDataContext.Provider value={{ videoData, setVideoData }}>
             <div>
-                <div className='hidden lg:block h-screen bg-white fixed mt-[140px] w-64'>
+                <div className="hidden lg:block h-screen bg-white fixed mt-[140px] w-64">
                     <SideNav />
                 </div>
                 {isSideNavVisible && (
@@ -33,14 +43,14 @@ function DashboardLayout({ children }) {
                 {/* Main Content */}
                 <div
                     className={`p-10 transition-all ${
-                        isSideNavVisible ? 'opacity-50' : ''
-                    } ${!isSideNavVisible && 'ml-0 lg:ml-64'}`}
+                        isSideNavVisible ? "opacity-50" : ""
+                    } ${!isSideNavVisible && "ml-0 lg:ml-64"}`}
                 >
                     {children}
                 </div>
             </div>
         </VideoDataContext.Provider>
-    )
+    );
 }
 
-export default DashboardLayout
+export default DashboardLayout;
