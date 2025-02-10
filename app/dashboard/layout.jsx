@@ -9,16 +9,16 @@ import { VideoDataContext } from "../_context/VideoDataContext";
 function DashboardLayout({ children }) {
     const [videoData, setVideoData] = useState([]);
     const [isSideNavVisible, setIsSideNavVisible] = useState(false);
-    const [loading, setLoading] = useState(false); // Track loading state
+    const [loading, setLoading] = useState(false);
     const router = useRouter();
     const { isSignedIn } = useUser();
 
     useEffect(() => {
         if (isSignedIn === false) {
-            setLoading(true); // Show loading indicator when signing out
+            setLoading(true);
             setTimeout(() => {
                 router.push("/sign-in");
-            }, 1000); // Add a delay for the loading effect
+            }, 1000);
         }
     }, [isSignedIn, router]);
 
@@ -30,7 +30,6 @@ function DashboardLayout({ children }) {
         <VideoDataContext.Provider value={{ videoData, setVideoData }}>
             <div>
                 {loading ? (
-                    // Show loading spinner while redirecting
                     <div className="flex justify-center items-center h-screen">
                         <img
                             src="/loading.gif"
@@ -57,9 +56,8 @@ function DashboardLayout({ children }) {
                         <Header toggleSideNav={toggleSideNav} isSideNavVisible={isSideNavVisible} />
                         {/* Main Content */}
                         <div
-                            className={`p-10 transition-all ${
-                                isSideNavVisible ? "opacity-50" : ""
-                            } ${!isSideNavVisible && "ml-0 lg:ml-64"}`}
+                            className={`p-10 transition-all ${isSideNavVisible ? "opacity-50" : ""
+                                } ${!isSideNavVisible && "ml-0 lg:ml-64"}`}
                         >
                             {children}
                         </div>
