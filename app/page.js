@@ -17,7 +17,7 @@ export default function Home() {
   }, [isSignedIn, router]);
 
   return (
-    <div>
+    <div className="flex justify-center items-center h-screen">
       <img src="/loading.gif" alt="Loading..." className="h-16 animate-pulse" />
     </div>
   );
