@@ -45,7 +45,7 @@ EXAMPLE_TOGETHER_AI_IMAGE_API_KEY=your_api_key
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/ai-short-video-generator.git
+   git clone https://github.com/Miki-Riki/ai-short-video-generator.git
    cd ai-short-video-generator
    ```
 
