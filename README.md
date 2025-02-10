@@ -20,13 +20,13 @@ EXAMPLE_NEXT_PUBLIC_DRIZZLE_DATABASE_URL=your_api_key
 # Clerk Authentication
 EXAMPLE_NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_api_key
 EXAMPLE_CLERK_SECRET_KEY=your_api_key
-EXAMPLE_NEXT_PUBLIC_CLERK_SIGN_IN_URL=your_api_key
-EXAMPLE_NEXT_PUBLIC_CLERK_SIGN_UP_URL=your_api_key
+EXAMPLE_NEXT_PUBLIC_CLERK_SIGN_IN_URL=your_url
+EXAMPLE_NEXT_PUBLIC_CLERK_SIGN_UP_URL=your_url
 
 # Gemini API for AI-powered video generation
 EXAMPLE_NEXT_PUBLIC_GEMINI_API_KEY=your_api_key
 
-# Google API for video-related features (if applicable)
+# Google API for video-related features
 EXAMPLE_GOOGLE_API_KEY=your_api_key
 
 # AssemblyAI for Captioning
