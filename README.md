@@ -23,7 +23,7 @@ EXAMPLE_CLERK_SECRET_KEY=your_api_key
 EXAMPLE_NEXT_PUBLIC_CLERK_SIGN_IN_URL=your_url
 EXAMPLE_NEXT_PUBLIC_CLERK_SIGN_UP_URL=your_url
 
-# Gemini API for AI-powered video generation
+# Gemini API for Generating Prompts
 EXAMPLE_NEXT_PUBLIC_GEMINI_API_KEY=your_api_key
 
 # Google API for Voice-to-Text
@@ -74,7 +74,7 @@ EXAMPLE_TOGETHER_AI_IMAGE_API_KEY=your_api_key
 ## Technologies Used
 - **Next.js**: React framework for server-side rendering and API routes.
 - **Clerk**: For authentication and user management.
-- **Gemini API**: AI-powered content generation for video creation.
+- **Gemini API**: AI-powered content generation for prompt creation.
 - **AssemblyAI**: For generating captions for videos.
 - **Appwrite**: File storage and backend services.
 - **Together AI**: Image generation for video content.
